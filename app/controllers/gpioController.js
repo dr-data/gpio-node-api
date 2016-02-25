@@ -17,9 +17,9 @@
 			  },req.params.id);			
 		})			
 		.put(function(req, res) {
-			  io.setGpioOn(function(err,results) {				
+			  io.setGpio(function(err,results) {				
 					res.json(results);				
-			  },req.params);		
+			  },req.params.id, req.body.value);		
 		});
 	};
 })(module.exports);

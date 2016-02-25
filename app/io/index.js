@@ -13,37 +13,14 @@
 			});
 		next(null, reduced); 
 	};  
-	io.getGPIOById = function(next,id) {
-	     var result;
-		 var data = gpioService.getGPIO;	
-    	 for (var i = 0; i < data.length; i++) {
-		 	if (data[i].headerNum == id) { 
-				result = data[i];	
-			} 
-		 }		
-		 next(null, result.value); 
+	io.getGPIOById = function(next, id) {
+	    var result = gpioService.getGPIO[id];
+		next(null, 1-result.value); 
 	}; 
-    io.setGpioOn = function(next, params) {
-		 var result;
-		 var data = gpioService.getGPIO;	
-    	 for (var i = 0; i < data.length; i++) {
-		 	if (data[i].headerNum == params.id) { 
-				result = data[i];	
-			} 
-		 }		
-		 result.set(params.value);
-		 next(null, result.value); 
-	};
-	io.setGpioOff = function(next, params) {
-		 var result;
-		 var data = gpioService.getGPIO;	
-    	 for (var i = 0; i < data.length; i++) {
-		 	if (data[i].headerNum == params.id) { 
-				result = data[i];	
-			} 
-		 }		
-		 result.set(params.value);
-		 next(null, result.value); 
+    io.setGpio = function(next, id, value) {
+		var result = gpioService.getGPIO[id];	
+    	result.set(1-value);
+		next(null, result.value); 
 	};
   	
 })(module.exports);
